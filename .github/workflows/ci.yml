@@ -1,0 +1,40 @@
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - master  # Track changes to master
+      - "add_*"  # Track all branches with the 'add_' prefix
+  pull_request:
+    branches:
+      - master  # Only run for PRs targeting the master branch
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest  # Use a Linux runner
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Install dependencies
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake g++ ninja-build
+
+      # Step 3: Configure CMake
+      - name: Configure CMake
+        run: |
+          cmake -S . -B build -G Ninja
+
+      # Step 4: Build the project
+      - name: Build the project
+        run: cmake --build build
+
+      # Step 5: Find and Run All Test Executables using "test_" prefix
+      - name: Run All Tests
+        run: |
+          cd build
+          find . -type f -executable -name "test_*" -exec {} \;
