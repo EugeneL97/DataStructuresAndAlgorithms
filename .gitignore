@@ -1,0 +1,23 @@
+# Ignore build artifacts
+/build/
+cmake-build-*/
+
+# Ignore CMake generated files
+CMakeCache.txt
+CMakeFiles/
+*.cmake
+*.ninja
+
+# Ignore executables
+*.exe
+*.out
+*.o
+*.obj
+
+# Ignore IDE files
+.idea/
+*.iml
+
+# Ignore logs and temporary files
+*.log
+*.tmp
