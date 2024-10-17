@@ -19,11 +19,10 @@ This PR introduces:
 <!-- Provide a checklist of files or areas that were changed. -->
 - [x] <File 1> – Implemented <Feature/Change>
 - [x] <File 2> – Updated <Feature/Change>
-- [x] <CMakeLists.txt> – Added GoogleTest
 
 ## How to Test
 <!-- Describe how reviewers can test these changes. -->
-1. Build the project using CLion.
+1. Build the project using CMake.
 2. Run the `<Test_Executable>` executable.
 3. Verify the output:
 
