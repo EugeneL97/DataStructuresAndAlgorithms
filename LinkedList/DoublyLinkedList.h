@@ -71,7 +71,15 @@ void DoublyLinkedList<T>::addFirst(const T &elem) {
 
 template<typename T>
 void DoublyLinkedList<T>::addLast(const T &elem) {
-
+    Node* newNode = new Node(elem, nullptr, tail);
+    if (isEmpty()) {
+        head = newNode;
+    }
+    else {
+        tail->next = newNode;
+    }
+    tail = newNode;
+    ++size;
 }
 
 template<typename T>
