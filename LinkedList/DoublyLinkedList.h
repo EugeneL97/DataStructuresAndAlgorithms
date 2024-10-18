@@ -29,7 +29,7 @@ public:
     bool contains(const T& elem) const;
 
     void clear();
-    int size() const;
+    int getSize() const;
     bool isEmpty() const;
     void printList() const;
 
@@ -41,12 +41,15 @@ private:
     };
     Node(const T& elem, Node *n = nullptr, Node *p = nullptr)
         : data(elem), next(n), prev(p) {}
+
+    int size = 0;
+    Node* head = nullptr;
+    Node* tail = nullptr;
 };
 
 template<typename T>
-DoublyLinkedList<T>::DoublyLinkedList() {
+DoublyLinkedList<T>::DoublyLinkedList() = default;
 
-}
 template<typename T>
 DoublyLinkedList<T>::~DoublyLinkedList() {
 
@@ -55,10 +58,20 @@ DoublyLinkedList<T>::~DoublyLinkedList() {
 
 template<typename T>
 void DoublyLinkedList<T>::addFirst(const T &elem) {
+    Node* newNode = new Node(elem, head, nullptr);
+    if (isEmpty()) {
+        tail = newNode;
+    }
+    else {
+        head->prev = newNode;
+    }
+    head = newNode;
+    ++size;
 }
 
 template<typename T>
 void DoublyLinkedList<T>::addLast(const T &elem) {
+
 }
 
 template<typename T>
@@ -102,7 +115,7 @@ void DoublyLinkedList<T>::clear() {
 }
 
 template<typename T>
-int DoublyLinkedList<T>::size() const {
+int DoublyLinkedList<T>::getSize() const {
 }
 
 template<typename T>
