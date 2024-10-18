@@ -12,9 +12,6 @@ public:
     ~DoublyLinkedList();
 
     //TODO: Copy constructor, assignment operator
-    void clear();
-    int size() const;
-    bool isEmpty() const;
 
     void addFirst(const T& elem);
     void addLast(const T& elem);
@@ -31,13 +28,19 @@ public:
     int indexOf(const T& elem) const;
     bool contains(const T& elem) const;
 
+    void clear();
+    int size() const;
+    bool isEmpty() const;
     void printList() const;
+
 private:
     struct Node {
         T data;
         Node* next;
         Node* prev;
     };
+    Node(const T& elem, Node *n = nullptr, Node *p = nullptr)
+        : data(elem), next(n), prev(p) {}
 };
 
 template<typename T>
@@ -48,17 +51,7 @@ template<typename T>
 DoublyLinkedList<T>::~DoublyLinkedList() {
 
 }
-template<typename T>
-void DoublyLinkedList<T>::clear() {
-}
 
-template<typename T>
-int DoublyLinkedList<T>::size() const {
-}
-
-template<typename T>
-bool DoublyLinkedList<T>::isEmpty() const {
-}
 
 template<typename T>
 void DoublyLinkedList<T>::addFirst(const T &elem) {
@@ -102,6 +95,18 @@ int DoublyLinkedList<T>::indexOf(const T &elem) const {
 
 template<typename T>
 bool DoublyLinkedList<T>::contains(const T &elem) const {
+}
+
+template<typename T>
+void DoublyLinkedList<T>::clear() {
+}
+
+template<typename T>
+int DoublyLinkedList<T>::size() const {
+}
+
+template<typename T>
+bool DoublyLinkedList<T>::isEmpty() const {
 }
 
 template<typename T>
