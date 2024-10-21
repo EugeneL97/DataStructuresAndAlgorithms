@@ -158,7 +158,17 @@ T& DoublyLinkedList<T>::peekLast() const {
 
 template<typename T>
 T DoublyLinkedList<T>::removeFirst() {
+    Node* temp = head;
+    Node* curr = head->next;
+
+    temp->next = nullptr;
+    T removedNode = temp->data;
+    delete temp;
+
+    head = curr;
     --size;
+
+    return removedNode;
 }
 
 template<typename T>
