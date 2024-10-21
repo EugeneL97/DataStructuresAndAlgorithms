@@ -12,6 +12,7 @@ add_executable(DataStructures
 enable_testing()
 add_subdirectory(googletest)
 
+
 add_executable(dynamic_array_test
         tests/test_dynamic_array.cpp
         Array/DynamicArray.h)
@@ -22,6 +23,8 @@ add_executable(linked_list_test
 
 # Link GTest
 target_link_libraries(dynamic_array_test gtest gtest_main)
+target_link_libraries(linked_list_test gtest gtest_main)
 
 # Register the test with CMake
 add_test(NAME DynamicArrayTest COMMAND dynamic_array_test)
+add_test(NAME LinkedListTest COMMAND linked_list_test)
