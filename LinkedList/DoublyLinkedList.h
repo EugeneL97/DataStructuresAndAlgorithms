@@ -123,7 +123,27 @@ void DoublyLinkedList<T>::addLast(const T &elem) {
 
 template<typename T>
 void DoublyLinkedList<T>::addAt(int index, const T &elem) {
-    for (auto it = begin();)
+    if (index < 0 || index > size) {
+        throw std::out_of_range("Invalid index");
+    }
+
+    if (index == 0) {
+        addFirst(elem);
+        return;
+    }
+
+    if (index == size) {
+        addLast(elem);
+        return;
+    }
+
+    auto it = begin();
+    for (; it != end() && index != 0; ++it, --index) {}
+
+    Node* curr = it.current;
+    Node* nodeToAdd = new Node(elem, curr, curr->prev);
+    curr->prev->next = nodeToAdd;
+    curr->prev = nodeToAdd;
 }
 
 template<typename T>
