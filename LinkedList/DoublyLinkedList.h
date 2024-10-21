@@ -8,6 +8,40 @@
 template <typename T>
 class DoublyLinkedList {
 public:
+    template <typename T>
+    class Iterator {
+    public:
+        Iterator(typename DoublyLinkedList<T>::Node* node) : current(node) {}
+
+        T& operator*() const {
+            return current->data;
+        }
+
+        Iterator& operator++() {
+            current = current->next;
+            return *this;
+        }
+
+        bool operator==(const Iterator& other) const {
+            return current == other.current;
+        }
+
+        bool operator!=(const Iterator& other) const {
+            return current != other.current;
+        }
+
+    private:
+        typename DoublyLinkedList<T>::Node* current;
+    };
+
+    Iterator<T> begin() const {
+        return Iterator(head);
+    }
+
+    Iterator<T> end() const {
+        return Iterator(nullptr);
+    }
+
     DoublyLinkedList();
     ~DoublyLinkedList();
 
@@ -33,6 +67,7 @@ public:
     bool isEmpty() const;
     void printList() const;
 
+
 private:
     struct Node {
         T data;
@@ -47,6 +82,8 @@ private:
     int size = 0;
     Node* head = nullptr;
     Node* tail = nullptr;
+
+    friend class Iterator;
 };
 
 template<typename T>
@@ -54,7 +91,7 @@ DoublyLinkedList<T>::DoublyLinkedList() = default;
 
 template<typename T>
 DoublyLinkedList<T>::~DoublyLinkedList() {
-
+    clear();
 }
 
 
@@ -86,6 +123,7 @@ void DoublyLinkedList<T>::addLast(const T &elem) {
 
 template<typename T>
 void DoublyLinkedList<T>::addAt(int index, const T &elem) {
+    for (auto it = begin();)
 }
 
 template<typename T>
@@ -100,34 +138,52 @@ T& DoublyLinkedList<T>::peekLast() const {
 
 template<typename T>
 T DoublyLinkedList<T>::removeFirst() {
-
+    --size;
 }
 
 template<typename T>
 T DoublyLinkedList<T>::removeLast() {
-
+    --size;
 }
 
 template<typename T>
 T DoublyLinkedList<T>::removeAt(int index) {
-
+    --size;
 }
 
 template<typename T>
 bool DoublyLinkedList<T>::remove(const T &elem) {
-
+    --size;
 }
 
 template<typename T>
 int DoublyLinkedList<T>::indexOf(const T &elem) const {
+    int index = 0;
+    for (auto it = begin(); it != end(); ++it, ++index) {
+        if (*it == elem) {
+            return index;
+        }
+    }
+    return -1;
 }
 
 template<typename T>
 bool DoublyLinkedList<T>::contains(const T &elem) const {
+    for (auto it = begin(); it != end(); ++it) {
+        if (*it == elem) {
+            return true;
+        }
+    }
+    return false;
 }
 
 template<typename T>
 void DoublyLinkedList<T>::clear() {
+    for (auto it = begin(); it != end(); ++it) {
+        removeFirst();
+    }
+    head = nullptr;
+    tail = nullptr;
 }
 
 template<typename T>
@@ -145,5 +201,9 @@ bool DoublyLinkedList<T>::isEmpty() const {
 
 template<typename T>
 void DoublyLinkedList<T>::printList() const {
+    for (auto it = begin(); it != end(); ++it) {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
 }
 #endif //DOUBLYLINKEDLIST_H
