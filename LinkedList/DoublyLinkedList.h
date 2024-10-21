@@ -173,7 +173,17 @@ T DoublyLinkedList<T>::removeFirst() {
 
 template<typename T>
 T DoublyLinkedList<T>::removeLast() {
+    Node* temp = tail;
+    Node* curr = tail->prev;
+
+    temp->prev = nullptr;
+    T removedNode = temp->data;
+    delete temp;
+
+    tail = curr;
     --size;
+
+    return removedNode;
 }
 
 template<typename T>
