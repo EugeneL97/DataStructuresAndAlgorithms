@@ -18,7 +18,7 @@ public:
     void addAt(int index, const T& elem);
 
     T& peekFirst() const;
-    T peekLast() const;
+    T& peekLast() const;
 
     T removeFirst();
     T removeLast();
@@ -38,9 +38,11 @@ private:
         T data;
         Node* next;
         Node* prev;
-    };
-    Node(const T& elem, Node *n = nullptr, Node *p = nullptr)
+
+        Node(const T& elem, Node *n = nullptr, Node *p = nullptr)
         : data(elem), next(n), prev(p) {}
+    };
+
 
     int size = 0;
     Node* head = nullptr;
@@ -87,27 +89,33 @@ void DoublyLinkedList<T>::addAt(int index, const T &elem) {
 }
 
 template<typename T>
-T & DoublyLinkedList<T>::peekFirst() const {
+T& DoublyLinkedList<T>::peekFirst() const {
+    return head->data;
 }
 
 template<typename T>
-T DoublyLinkedList<T>::peekLast() const {
+T& DoublyLinkedList<T>::peekLast() const {
+    return tail->data;
 }
 
 template<typename T>
 T DoublyLinkedList<T>::removeFirst() {
+
 }
 
 template<typename T>
 T DoublyLinkedList<T>::removeLast() {
+
 }
 
 template<typename T>
 T DoublyLinkedList<T>::removeAt(int index) {
+
 }
 
 template<typename T>
 bool DoublyLinkedList<T>::remove(const T &elem) {
+
 }
 
 template<typename T>
@@ -124,10 +132,15 @@ void DoublyLinkedList<T>::clear() {
 
 template<typename T>
 int DoublyLinkedList<T>::getSize() const {
+    return size;
 }
 
 template<typename T>
 bool DoublyLinkedList<T>::isEmpty() const {
+    if (size == 0) {
+        return true;
+    }
+    return false;
 }
 
 template<typename T>
