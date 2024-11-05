@@ -59,6 +59,9 @@ public:
     T removeAt(int index);
     bool remove(const T& elem);
 
+    T& peekFirst() const;
+    T& peekLast() const;
+
     int indexOf(const T& elem) const;
     bool contains(const T& elem) const;
 
