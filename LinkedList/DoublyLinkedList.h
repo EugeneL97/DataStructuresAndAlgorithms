@@ -149,15 +149,6 @@ void DoublyLinkedList<T>::addAt(int index, const T &elem) {
     curr->prev = nodeToAdd;
 }
 
-template<typename T>
-T& DoublyLinkedList<T>::peekFirst() const {
-    return head->data;
-}
-
-template<typename T>
-T& DoublyLinkedList<T>::peekLast() const {
-    return tail->data;
-}
 
 template<typename T>
 T DoublyLinkedList<T>::removeFirst() {
