@@ -303,6 +303,7 @@ void DoublyLinkedList<T>::clear() {
     }
     head = nullptr;
     tail = nullptr;
+    size = 0;
 }
 
 template<typename T>
