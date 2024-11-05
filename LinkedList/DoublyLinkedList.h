@@ -8,10 +8,9 @@
 template <typename T>
 class DoublyLinkedList {
 public:
-    template <typename T>
     class Iterator {
     public:
-        Iterator(typename DoublyLinkedList<T>::Node* node) : current(node) {}
+        Iterator(typename DoublyLinkedList::Node* node) : current(node) {}
 
         T& operator*() const {
             return current->data;
@@ -35,14 +34,14 @@ public:
         }
 
     private:
-        typename DoublyLinkedList<T>::Node* current;
+        typename DoublyLinkedList::Node* current;
     };
 
-    Iterator<T> begin() const {
+    Iterator begin() const {
         return Iterator(head);
     }
 
-    Iterator<T> end() const {
+    Iterator end() const {
         return Iterator(nullptr);
     }
 
@@ -54,9 +53,6 @@ public:
     void addFirst(const T& elem);
     void addLast(const T& elem);
     void addAt(int index, const T& elem);
-
-    T& peekFirst() const;
-    T& peekLast() const;
 
     T removeFirst();
     T removeLast();
@@ -147,7 +143,7 @@ void DoublyLinkedList<T>::addAt(int index, const T &elem) {
     auto it = begin();
     for (; it != end() && index != 0; ++it, --index) {}
 
-    Node* curr = it.current;
+    Node* curr = it.getNode();
     Node* nodeToAdd = new Node(elem, curr, curr->prev);
     curr->prev->next = nodeToAdd;
     curr->prev = nodeToAdd;
