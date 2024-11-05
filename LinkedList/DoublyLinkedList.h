@@ -212,7 +212,34 @@ T DoublyLinkedList<T>::removeLast() {
 
 template<typename T>
 T DoublyLinkedList<T>::removeAt(int index) {
+    if (index < 0 || index > size) {
+        throw std::out_of_range("Invalid index");
+    }
+
+    if (index == 0) {
+        return removeFirst();
+    }
+
+    if (index == size) {
+        return removeLast();
+    }
+
+    auto it = begin();
+    for(; it != end() && index != 0; ++it, --index) {}
+
+    Node* toRemove = it.getNode();
+    Node* temp = toRemove->prev;
+
+    temp->next = toRemove->next;
+    toRemove->next->prev = temp;
+
+    T valueToRemove = toRemove->data;
+    delete toRemove;
     --size;
+    if (size == 0) {
+        head = tail = nullptr;
+    }
+    return valueToRemove;
 }
 
 template<typename T>
