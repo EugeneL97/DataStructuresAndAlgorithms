@@ -184,11 +184,24 @@ T DoublyLinkedList<T>::removeFirst() {
 
 template<typename T>
 T DoublyLinkedList<T>::removeLast() {
+    if (isEmpty()) {
+        throw std::out_of_range("List is empty!");
+    }
     Node* temp = tail;
     Node* curr = tail->prev;
 
     temp->prev = nullptr;
     T removedNode = temp->data;
+    tail = tail->prev;
+
+    if (tail) {
+        tail->next = nullptr;
+    } else {
+        head = nullptr;
+    }
+
+
+
     delete temp;
 
     tail = curr;
