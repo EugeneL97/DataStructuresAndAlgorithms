@@ -158,11 +158,22 @@ T& DoublyLinkedList<T>::peekLast() const {
 
 template<typename T>
 T DoublyLinkedList<T>::removeFirst() {
+    if (isEmpty()) {
+        throw std::out_of_range("List is empty!");
+    }
     Node* temp = head;
     Node* curr = head->next;
 
     temp->next = nullptr;
     T removedNode = temp->data;
+    head = head->next;
+
+    if (head) {
+        head->prev = nullptr;
+    } else {
+        tail = nullptr;
+    }
+
     delete temp;
 
     head = curr;
