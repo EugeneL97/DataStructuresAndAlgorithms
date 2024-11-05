@@ -30,6 +30,10 @@ public:
             return current != other.current;
         }
 
+        typename DoublyLinkedList::Node* getNode() const {
+            return current;
+        }
+
     private:
         typename DoublyLinkedList<T>::Node* current;
     };
