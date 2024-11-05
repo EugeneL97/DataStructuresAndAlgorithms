@@ -322,7 +322,7 @@ bool DoublyLinkedList<T>::isEmpty() const {
 template<typename T>
 void DoublyLinkedList<T>::printList() const {
     for (auto it = begin(); it != end(); ++it) {
-        std::cout << *it << " ";
+        std::cout << *it << "->";
     }
     std::cout << std::endl;
 }
