@@ -302,7 +302,7 @@ bool DoublyLinkedList<T>::contains(const T &elem) const {
 
 template<typename T>
 void DoublyLinkedList<T>::clear() {
-    for (auto it = begin(); it != end(); ++it) {
+    while(!isEmpty()) {
         removeFirst();
     }
     head = nullptr;
