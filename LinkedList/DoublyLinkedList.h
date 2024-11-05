@@ -165,9 +165,6 @@ T DoublyLinkedList<T>::removeFirst() {
         throw std::out_of_range("List is empty!");
     }
     Node* temp = head;
-    Node* curr = head->next;
-
-    temp->next = nullptr;
     T removedNode = temp->data;
     head = head->next;
 
@@ -178,8 +175,6 @@ T DoublyLinkedList<T>::removeFirst() {
     }
 
     delete temp;
-
-    head = curr;
     --size;
 
     return removedNode;
@@ -191,9 +186,6 @@ T DoublyLinkedList<T>::removeLast() {
         throw std::out_of_range("List is empty!");
     }
     Node* temp = tail;
-    Node* curr = tail->prev;
-
-    temp->prev = nullptr;
     T removedNode = temp->data;
     tail = tail->prev;
 
@@ -206,8 +198,6 @@ T DoublyLinkedList<T>::removeLast() {
 
 
     delete temp;
-
-    tail = curr;
     --size;
 
     return removedNode;
