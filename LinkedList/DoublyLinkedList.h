@@ -244,7 +244,32 @@ T DoublyLinkedList<T>::removeAt(int index) {
 
 template<typename T>
 bool DoublyLinkedList<T>::remove(const T &elem) {
-    --size;
+
+    for(auto it = begin(); it != end(); ++it) {
+        if (*it == elem) {
+            Node* toRemove = it.current;
+            Node* temp = toRemove->prev;
+
+            temp->next = toRemove->next;
+            toRemove->next->prev = temp;
+
+            delete toRemove;
+            --size;
+
+            return true;
+        }
+    }
+    return false;
+}
+
+template<typename T>
+T& DoublyLinkedList<T>::peekFirst() const {
+    return head->data;
+}
+
+template<typename T>
+T& DoublyLinkedList<T>::peekLast() const {
+    return tail->data;
 }
 
 template<typename T>
