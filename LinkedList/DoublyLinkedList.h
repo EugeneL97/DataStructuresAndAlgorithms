@@ -231,7 +231,7 @@ bool DoublyLinkedList<T>::remove(const T &elem) {
 
     for(auto it = begin(); it != end(); ++it) {
         if (*it == elem) {
-            Node* toRemove = it.current;
+            Node* toRemove = it.getNode();
             Node* temp = toRemove->prev;
 
             temp->next = toRemove->next;
