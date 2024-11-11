@@ -44,7 +44,7 @@ TEST_F(LinkedListTest, RemoveFromEmptyList) {
 }
 
 TEST_F(LinkedListTest, AccessEmptyList) {
-
+    EXPECT_TRUE(list.isEmpty());
 }
 
 
