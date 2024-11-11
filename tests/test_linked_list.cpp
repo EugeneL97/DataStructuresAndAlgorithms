@@ -33,7 +33,14 @@ TEST_F(LinkedListTest, AddToEmptyList) {
 }
 
 TEST_F(LinkedListTest, RemoveFromEmptyList) {
+    EXPECT_THROW(list.removeFirst(), std::out_of_range);
+    EXPECT_EQ(list.getSize(), 0);
 
+    EXPECT_THROW(list.removeLast(), std::out_of_range);
+    EXPECT_EQ(list.getSize(), 0);
+
+    EXPECT_THROW(list.removeAt(0), std::out_of_range);
+    EXPECT_EQ(list.getSize(), 0);
 }
 
 TEST_F(LinkedListTest, AccessEmptyList) {
