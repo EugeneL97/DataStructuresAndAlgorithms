@@ -48,7 +48,22 @@ TEST_F(LinkedListTest, AccessEmptyList) {
 }
 
 
-TEST_F(LinkedListTest, RemoveDrecreasesSize) {
+TEST_F(LinkedListTest, RemoveDecreasesSize) {
+    for (int i = 0; i < 10; ++i) {
+        list.addFirst(1 * i);
+    }
+    EXPECT_EQ(list.getSize(), 10);
 
+    list.remove(5);
+    EXPECT_EQ(list.getSize(), 9);
+
+    list.removeFirst();
+    EXPECT_EQ(list.getSize(), 8);
+
+    list.removeLast();
+    EXPECT_EQ(list.getSize(), 7);
+
+    list.clear();
+    EXPECT_EQ(list.getSize(), 0);
 }
 
