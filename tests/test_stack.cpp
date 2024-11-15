@@ -27,7 +27,28 @@ TEST_F(StackTest, PushToStack) {
 
 }
 
-TEST_F(StackTest, RemoveFromStack) {
+TEST_F(StackTest, PushSingleAndPop) {
+    stack.push(42);
+    EXPECT_EQ(stack.peek(), 42);
+    stack.pop();
+    EXPECT_TRUE(stack.isEmpty());
+}
+
+TEST_F(StackTest, StressTest) {
+    const int largeSize = 1000000;
+    for (int i = 0; i < largeSize; ++i) {
+        stack.push(i);
+    }
+    EXPECT_EQ(stack.getSize(), largeSize);
+
+    for (int i = largeSize - 1; i >= 0; --i) {
+        EXPECT_EQ(stack.peek(), i);
+        stack.pop();
+    }
+    EXPECT_TRUE(stack.isEmpty());
+}
+
+TEST_F(StackTest, PopFromStack) {
     for (int i = 0; i < 10; ++i) {
         stack.add(i*i*i);
     }
