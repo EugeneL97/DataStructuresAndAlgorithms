@@ -56,8 +56,8 @@ TEST_F(StackTest, PopFromStack) {
 
     stack.pop();
     EXPECT_EQ(stack.getSize(), 9);
-
-    for (int i = 0; i < stack.getSize(); ++i) {
+    int counter = stack.getSize();
+    for (int i = 0; i < counter; ++i) {
         stack.pop();
     }
 
