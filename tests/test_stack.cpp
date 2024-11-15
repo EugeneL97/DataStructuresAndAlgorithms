@@ -50,7 +50,7 @@ TEST_F(StackTest, StressTest) {
 
 TEST_F(StackTest, PopFromStack) {
     for (int i = 0; i < 10; ++i) {
-        stack.add(i*i*i);
+        stack.push(i*i*i);
     }
     EXPECT_EQ(stack.getSize(), 10);
 
