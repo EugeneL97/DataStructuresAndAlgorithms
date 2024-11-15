@@ -248,12 +248,18 @@ bool DoublyLinkedList<T>::remove(const T &elem) {
 
 template<typename T>
 T& DoublyLinkedList<T>::peekFirst() const {
-    return head->data;
+    if (head) {
+        return head->data;
+    }
+    throw std::out_of_range("Nothing to peek! It's empty.");
 }
 
 template<typename T>
 T& DoublyLinkedList<T>::peekLast() const {
-    return tail->data;
+    if (tail) {
+        return tail->data;
+    }
+    throw std::out_of_range("Nothing to peek! It's empty.");
 }
 
 template<typename T>
