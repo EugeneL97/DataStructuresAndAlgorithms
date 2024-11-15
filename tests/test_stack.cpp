@@ -75,3 +75,27 @@ TEST_F(StackTest, PeekStack) {
 
     EXPECT_EQ(stack.peek(), 16);
 }
+
+TEST_F(StackTest, PeekEmptyStackThrows) {
+    EXPECT_THROW(stack.peek(), std::out_of_range);
+}
+
+TEST_F(StackTest, RemoveFromEmptyStack) {
+    EXPECT_THROW(stack.pop(), std::out_of_range);
+    EXPECT_EQ(stack.getSize(), 0);
+}
+
+struct CustomData {
+    int id;
+    std::string name;
+};
+
+TEST_F(StackTest, CustomDataType) {
+    Stack<CustomData> customStack;
+    customStack.push({1, "Jesse"});
+    customStack.push({2, "Walter"});
+
+    EXPECT_EQ(customStack.peek().name, "Walter");
+    customStack.pop();
+    EXPECT_EQ(customStack.peek().name, "Jesse");
+}
