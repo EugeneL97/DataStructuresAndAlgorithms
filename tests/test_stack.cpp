@@ -15,8 +15,8 @@ TEST_F(StackTest, InitialStackIsEmpty) {
     EXPECT_TRUE(stack.isEmpty());
 }
 
-TEST_F(StackTest, AddToStack) {
-    stack.add(5);
+TEST_F(StackTest, PushToStack) {
+    stack.push(5);
     EXPECT_EQ(stack.getSize(), 1);
     EXPECT_FALSE(stack.isEmpty());
 
