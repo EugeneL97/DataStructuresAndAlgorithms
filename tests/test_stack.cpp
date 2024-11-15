@@ -21,7 +21,7 @@ TEST_F(StackTest, PushToStack) {
     EXPECT_FALSE(stack.isEmpty());
 
     for (int i = 0; i < 10; ++i) {
-        stack.add(i);
+        stack.push(i);
     }
     EXPECT_EQ(stack.getSize(), 11);
 
