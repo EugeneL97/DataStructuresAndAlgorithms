@@ -7,7 +7,8 @@ add_executable(DataStructures
         main.cpp
         Array/DynamicArray.h
         LinkedList/DoublyLinkedList.h
-        Stack/Stack.h)
+        Stack/Stack.h
+        Queue/Queue.h)
 
 # GTest Support
 enable_testing()
@@ -26,12 +27,18 @@ add_executable(stack_test
         tests/test_stack.cpp
         Stack/Stack.h)
 
+add_executable(queue_test
+        tests/test_queue.cpp
+        Queue/Queue.h)
+
 # Link GTest
 target_link_libraries(dynamic_array_test gtest gtest_main)
 target_link_libraries(linked_list_test gtest gtest_main)
 target_link_libraries(stack_test gtest gtest_main)
+target_link_libraries(queue_test gtest gtest_main)
 
 # Register the test with CMake
 add_test(NAME DynamicArrayTest COMMAND dynamic_array_test)
 add_test(NAME LinkedListTest COMMAND linked_list_test)
 add_test(NAME StackTest COMMAND stack_test)
+add_test(NAME QueueTest COMMAND queue_test)

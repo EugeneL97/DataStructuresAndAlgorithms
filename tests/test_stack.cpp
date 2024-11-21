@@ -35,7 +35,7 @@ TEST_F(StackTest, PushSingleAndPop) {
 }
 
 TEST_F(StackTest, StressTest) {
-    const int largeSize = 1000000;
+    constexpr int largeSize = 1000000;
     for (int i = 0; i < largeSize; ++i) {
         stack.push(i);
     }
@@ -56,7 +56,7 @@ TEST_F(StackTest, PopFromStack) {
 
     stack.pop();
     EXPECT_EQ(stack.getSize(), 9);
-    int counter = stack.getSize();
+    const int counter = stack.getSize();
     for (int i = 0; i < counter; ++i) {
         stack.pop();
     }
