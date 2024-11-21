@@ -4,9 +4,6 @@
 
 template<typename T>
 class Stack {
-private:
-
-    DoublyLinkedList<T> stack;
 public:
     Stack();
     ~Stack();
@@ -16,6 +13,10 @@ public:
     void push(const T& elem);
     int getSize() const;
     bool isEmpty() const;
+
+private:
+
+    DoublyLinkedList<T> stack;
 };
 
 template<typename T>
