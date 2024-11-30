@@ -32,7 +32,7 @@ PriorityQueue<T>::~PriorityQueue() {
 template <typename T>
 void PriorityQueue<T>::push(T value) {
     heap.push_back(value);
-    heap.heapifyUp();
+    heapifyUp();
 }
 
 template <typename T>
@@ -46,57 +46,63 @@ void PriorityQueue<T>::pop() {
     }
     std::swap(heap[0], heap.back());
     heap.pop_back();
-    heap.heapifyDown();
+    heapifyDown();
 }
 
 template<typename T>
 void PriorityQueue<T>::heapifyUp() {
-    // Empty heaps or single element heaps that never require swapping
     if (heap.size() <= 1) {
         return;
     }
 
     size_t idx = heap.size() - 1;
-    size_t parentIdx = (idx - 1) / 2;
 
-    while (idx > 0 && heap[idx] < heap[parentIdx]) {
+    while (idx > 0) {
+        size_t parentIdx = (idx - 1) / 2;
+        if (heap[idx] >= heap[parentIdx]) {
+            break;
+        }
         std::swap(heap[idx], heap[parentIdx]);
         idx = parentIdx;
-        parentIdx = (parentIdx - 1) / 2;
     }
 }
 
 template<typename T>
 void PriorityQueue<T>::heapifyDown() {
-    // Empty heaps or single element heaps that never require swapping
     if (heap.size() <= 1) {
         return;
     }
 
     size_t idx = 0;
-    size_t left_child = idx * 2 + 1;
-    size_t right_child = idx * 2 + 2;
 
-    while (left_child < heap.size()) {
-        if (right_child < heap.size()) {
-            // Swap with the smaller child to maintain the min-heap property
-            if (heap[left_child] <= heap[right_child]) {
-                std::swap(heap[idx], heap[left_child]);
-                idx = left_child;
-            }
-            else {
-                std::swap(heap[idx], heap[right_child]);
-                idx = right_child;
-            }
+    while (true) {
+        size_t left_child = idx * 2 + 1;
+        size_t right_child = idx * 2 + 2;
+
+        // If no children exist, we're done
+        if (left_child >= heap.size()) {
+            break;
         }
-        else {
-            if (heap[idx] > heap[left_child]) {
-                std::swap(heap[idx], heap[left_child]);
-            }
-            idx = left_child;
+
+        size_t smallest = idx;
+
+        // Compare with left child
+        if (heap[left_child] < heap[smallest]) {
+            smallest = left_child;
         }
-        left_child = idx * 2 + 1;
-        right_child = idx * 2 + 2;
+
+        // Compare with right child (only if it exists)
+        if (right_child < heap.size() && heap[right_child] < heap[smallest]) {
+            smallest = right_child;
+        }
+
+        // If no swap is needed, we're done
+        if (smallest == idx) {
+            break;
+        }
+
+        std::swap(heap[idx], heap[smallest]);
+        idx = smallest; // Move down the tree
     }
 }
 
